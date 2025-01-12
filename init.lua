@@ -360,12 +360,24 @@ require('lazy').setup({
         },
       },
 
-      completion = {
-        nvim_cmp = true,
-        min_chars = 2,
-        new_notes_location = "current_dir",
-        prepend_note_id = true,
-      },
+      -- completion = {
+      --   nvim_cmp = true,
+      --   min_chars = 2,
+      --   new_notes_location = "current_dir",
+      --   prepend_note_id = true,
+      --},
+
+      wiki_link_func = function(opts)
+        if opts.id == nil then
+          return string.format("[[%s]]", opts.label)
+        elseif opts.label ~= opts.id then
+          return string.format("[[%s|%s]]", opts.id, opts.label)
+        else
+          return string.format("[[%s]]", opts.id)
+        end
+      end,
+
+      new_notes_location = "current_dir",
 
       mappings = {
         -- Obsidian follow.
