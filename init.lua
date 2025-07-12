@@ -987,7 +987,9 @@ local servers = {
   tsserver = {},
   astro = { filetypes = { 'astro' } },
   tailwindcss = { filetypes = { 'html', 'css', 'scss', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'astro', 'htmldjango' } },
-  html = { filetypes = { 'html', 'htmldjango', 'twig', 'hbs' } },
+
+  html = { filetypes = { 'html', 'htmldjango', 'twig', 'hbs', 'ejs', 'tsx', 'jsx' } },
+
 
   lua_ls = {
     Lua = {
