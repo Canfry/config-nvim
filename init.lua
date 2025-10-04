@@ -595,7 +595,8 @@ require('lazy').setup({
         --- function will be called with a ColorScheme table
         ---@param colors ColorScheme
         on_colors = function(colors)
-          colors.bg = "black" -- style for normal windows
+          colors.bg = "#141414"
+          -- style for normal windows
         end,
 
         --- You can override specific highlights to use other groups or a hex color
