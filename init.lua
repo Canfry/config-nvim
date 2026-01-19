@@ -569,43 +569,113 @@ require('lazy').setup({
   --   end,
   -- },
 
+  -- {
+  --   "electron-highlighter/nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("electron_highlighter").setup({
+  --       style = "night",
+  --       transparent = false,
+  --       terminal_colors = true,
+  --       styles = {
+  --         -- Style to be applied to different syntax groups
+  --         -- Value is any valid attr-list value for `:help nvim_set_hl`
+  --         comments = { italic = true },
+  --         keywords = { italic = true },
+  --         functions = {},
+  --         variables = {},
+  --         -- Background styles. Can be "dark", "transparent" or "normal"
+  --         sidebars = "dark",              -- style for sidebars, see below
+  --         floats = "dark",                -- style for floating windows
+  --       },
+  --       sidebars = { "qf", "help" },      -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
+  --       hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
+  --       dim_inactive = false,             -- dims inactive windows
+  --       lualine_bold = false,             -- When `true`, section headers in the lualine theme will be bold
+  --
+  --       --- You can override specific color groups to use other groups or a hex color
+  --       --- function will be called with a ColorScheme table
+  --       ---@param colors ColorScheme
+  --       on_colors = function(colors)
+  --         colors.bg = "#000000"
+  --         -- style for normal windows
+  --       end,
+  --
+  --       --- You can override specific highlights to use other groups or a hex color
+  --       --- function will be called with a Highlights and ColorScheme table
+  --       on_highlights = function(highlights, colors)
+  --         colors.bg = "#000000"
+  --       end,
+  --     })
+  --     vim.cmd [[colorscheme electron_highlighter]]
+  --   end,
+  -- },
+
+  -- {
+  --   "avuenja/shizukana.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require("shizukana").setup({
+  --       style = "moon",
+  --       transparent = false,
+  --
+  --       plugins = {
+  --         auto_detect = true,
+  --         telescope = true,
+  --         lualine = true,
+  --         treesitter = true,
+  --         lsp = true,
+  --       },
+  --
+  --       on_colors = function(colors)
+  --         colors.bg = "#000000"
+  --       end,
+  --     })
+  --     vim.cmd.colorscheme("shizukana")
+  --   end,
+  -- },
+
   {
-    "electron-highlighter/nvim",
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
+    priority = 1000,
     config = function()
-      require("electron_highlighter").setup({
+      require("cyberdream").setup({
+        variant = "default",
         transparent = false,
+        saturation = 1,
+        italic_comments = false,
+        hide_fillchars = false,
+        borderless_pickers = false,
         terminal_colors = true,
-        styles = {
-          -- Style to be applied to different syntax groups
-          -- Value is any valid attr-list value for `:help nvim_set_hl`
-          comments = { italic = true },
-          keywords = { italic = true },
-          functions = {},
-          variables = {},
-          -- Background styles. Can be "dark", "transparent" or "normal"
-          sidebars = "dark",              -- style for sidebars, see below
-          floats = "dark",                -- style for floating windows
+        cache = false,
+        highlights = {
+          Comment = { fg = '#696969', bg = 'NONE', italic = true },
         },
-        sidebars = { "qf", "help" },      -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
-        hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
-        dim_inactive = false,             -- dims inactive windows
-        lualine_bold = false,             -- When `true`, section headers in the lualine theme will be bold
+        colors = {
+          -- For a list of colors see `lua/cyberdream/colours.lua`
 
-        --- You can override specific color groups to use other groups or a hex color
-        --- function will be called with a ColorScheme table
-        ---@param colors ColorScheme
-        on_colors = function(colors)
-          colors.bg = "#141414"
-          -- style for normal windows
-        end,
+          -- Override colors for both light and dark variants
+          bg = "#000000",
+          green = "#00ff00",
 
-        --- You can override specific highlights to use other groups or a hex color
-        --- function will be called with a Highlights and ColorScheme table
-        ---@param highlights Highlights
-        ---@param colors ColorScheme
-        on_highlights = function(highlights, colors) end,
+          -- If you want to override colors for light or dark variants only, use the following format:
+          dark = {
+            magenta = "#ff00ff",
+            fg = "#eeeeee",
+          },
+          light = {
+            red = "#ff5c57",
+            cyan = "#5ef1ff",
+          },
+        },
+        extensions = {
+          telescope = true,
+        },
       })
-      vim.cmd [[colorscheme electron_highlighter]]
+      vim.cmd("colorscheme cyberdream")
     end,
   },
 
@@ -617,7 +687,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = true,
-        theme = 'electron_highlighter',
+        theme = 'cyberdream',
         -- transparency = true,
         component_separators = '|',
         section_separators = '',
@@ -670,7 +740,7 @@ require('lazy').setup({
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
-  require 'kickstart.plugins.autoformat',
+  --[[ require 'kickstart.plugins.autoformat', ]]
   require 'kickstart.plugins.debug',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
